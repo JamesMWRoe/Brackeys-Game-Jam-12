@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SpeedIncreaseEffect" load_steps=2 format=3 uid="uid://b3x8ptyrgu5fa"]
+
+[ext_resource type="Script" path="res://Scripts/Items/ItemEffect/speed_increase_effect.gd" id="1_tj3py"]
+
+[resource]
+script = ExtResource("1_tj3py")
+speed_multiplier = 1.5

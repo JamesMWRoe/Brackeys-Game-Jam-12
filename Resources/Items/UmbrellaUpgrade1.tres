@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://d4eqepys6nlim"]
+
+[ext_resource type="Resource" uid="uid://b4nadpyboui4g" path="res://Resources/Effects/DamageIncrease1.tres" id="1_6cvyd"]
+[ext_resource type="Texture2D" uid="uid://eml511lsfr2l" path="res://Assets/Items/UmbrellaUpgradeIcon.png" id="1_uc6al"]
+[ext_resource type="Script" path="res://Scripts/Items/item.gd" id="2_46eje"]
+
+[resource]
+script = ExtResource("2_46eje")
+type = 0
+name = "Umbrella Upgrade I"
+icon = ExtResource("1_uc6al")
+description = "Increases Umbrella Damage by 4"
+cost = 40
+effect = ExtResource("1_6cvyd")

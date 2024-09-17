@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HealthRestoreEffect" load_steps=2 format=3 uid="uid://b8etxhhvxg5p6"]
+
+[ext_resource type="Script" path="res://Scripts/Items/ItemEffect/health_restore_effect.gd" id="1_ppfk7"]
+
+[resource]
+script = ExtResource("1_ppfk7")
+health_restored = 3

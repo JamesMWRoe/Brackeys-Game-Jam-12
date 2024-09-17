@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://bhmuijwlibq3r"]
+
+[ext_resource type="Script" path="res://Scripts/character_stats.gd" id="1_w230q"]
+
+[resource]
+script = ExtResource("1_w230q")
+max_health = 2
+attack = 1
+hit_force = 200.0
+speed_multiplier = 0.0
+pp_reward = 2

@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://3fig83yf2gdo"]
+
+[ext_resource type="Script" path="res://Scripts/Shop/upgrade_shop.gd" id="1_5hesr"]
+[ext_resource type="PackedScene" uid="uid://b5hgjicowf3ai" path="res://Scenes/Shops/shop_item.tscn" id="2_eekso"]
+[ext_resource type="FontFile" uid="uid://b1cm3062kqoi2" path="res://Assets/Font/monogram-extended.ttf" id="4_au876"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop_menu_ui.gd" id="4_l0utt"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop_description_ui.gd" id="4_q6keu"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop_inventory_ui.gd" id="5_qdcjb"]
+
+[node name="UpgradeShop" type="Area2D"]
+monitoring = false
+script = ExtResource("1_5hesr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ShopMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("4_l0utt")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ShopMenu"]
+modulate = Color(0, 0, 0.737255, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DescriptionPanel" type="Control" parent="CanvasLayer/ShopMenu"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("4_q6keu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ShopMenu/DescriptionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_au876")
+theme_override_font_sizes/font_size = 48
+text = "Name"
+
+[node name="Separator" type="Control" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator4" type="Control" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_au876")
+theme_override_font_sizes/font_size = 48
+text = "Description"
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="CanvasLayer/ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("4_au876")
+theme_override_font_sizes/font_size = 48
+text = "Cost"
+
+[node name="ItemList" type="HBoxContainer" parent="CanvasLayer/ShopMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -264.0
+offset_right = 576.0
+offset_bottom = -136.0
+grow_vertical = 0
+alignment = 1
+script = ExtResource("5_qdcjb")
+
+[node name="ShopItem" parent="CanvasLayer/ShopMenu/ItemList" instance=ExtResource("2_eekso")]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="CanvasLayer/ShopMenu/ItemList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopItem2" parent="CanvasLayer/ShopMenu/ItemList" instance=ExtResource("2_eekso")]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="CanvasLayer/ShopMenu/ItemList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopItem3" parent="CanvasLayer/ShopMenu/ItemList" instance=ExtResource("2_eekso")]
+layout_mode = 2

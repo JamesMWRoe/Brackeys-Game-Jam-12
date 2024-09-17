@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://w5yjbxhh1wbf"]
+
+[ext_resource type="Script" path="res://Scripts/Player/UI/power_points_gui.gd" id="1_8tupf"]
+
+[node name="PowerPointsGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+script = ExtResource("1_8tupf")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 40.0
+offset_right = 80.0
+offset_bottom = 23.0
+text = "Power Points: 0"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

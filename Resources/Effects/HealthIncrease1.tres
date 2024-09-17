@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HealthIncreaseEffect" load_steps=2 format=3 uid="uid://ckw7w5ayvbcn1"]
+
+[ext_resource type="Script" path="res://Scripts/Items/ItemEffect/health_increase_effect.gd" id="1_0oq6t"]
+
+[resource]
+script = ExtResource("1_0oq6t")
+health_increase = 1

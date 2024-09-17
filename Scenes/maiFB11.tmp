@@ -1,0 +1,328 @@
+[gd_scene load_steps=39 format=3 uid="uid://bscjv23ae5imu"]
+
+[ext_resource type="Script" path="res://Scripts/Level/main_level.gd" id="1_8beuf"]
+[ext_resource type="Texture2D" uid="uid://b3x4q6edddpus" path="res://Assets/Street.png" id="1_pnre0"]
+[ext_resource type="PackedScene" uid="uid://dh7km5x273aj5" path="res://Scenes/Player/player.tscn" id="2_0aeut"]
+[ext_resource type="PackedScene" uid="uid://bjx2oerqhlgjs" path="res://Scenes/Player/player_gui.tscn" id="2_3gf7y"]
+[ext_resource type="Script" path="res://Scripts/Level/bounds.gd" id="4_hsj4r"]
+[ext_resource type="Script" path="res://Scripts/Systems/shop_system.gd" id="6_knel8"]
+[ext_resource type="PackedScene" uid="uid://cm1gk2rql0mie" path="res://Scenes/spawner.tscn" id="6_my7i2"]
+[ext_resource type="Script" path="res://Scripts/Systems/spawn_system.gd" id="6_naxth"]
+[ext_resource type="PackedScene" uid="uid://3fig83yf2gdo" path="res://Scenes/Shops/upgrade_shop.tscn" id="7_t4abr"]
+[ext_resource type="PackedScene" uid="uid://j7ibpko03fpv" path="res://Scenes/Enemies/ground_enemy.tscn" id="7_u17or"]
+[ext_resource type="PackedScene" uid="uid://c2pmbhk6ld7r8" path="res://Scenes/Enemies/aerial_enemy.tscn" id="8_h3t70"]
+[ext_resource type="Resource" uid="uid://cjwc2hhmebbg0" path="res://Resources/Items/BootUpgradeI.tres" id="12_gg8h2"]
+[ext_resource type="Resource" uid="uid://d4eqepys6nlim" path="res://Resources/Items/UmbrellaUpgrade1.tres" id="13_ocddm"]
+[ext_resource type="Resource" uid="uid://doluwab53mpdh" path="res://Resources/Items/TestUpgrade.tres" id="14_iyvrr"]
+[ext_resource type="PackedScene" uid="uid://2hx5v5qyx8cd" path="res://Scenes/Shops/vending_shop.tscn" id="15_4aqpj"]
+[ext_resource type="Script" path="res://Scripts/Particles/rain_system.gd" id="16_h7o8s"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rd2pl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpgyb"]
+size = Vector2(74, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3rs1"]
+size = Vector2(66, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpcyh"]
+size = Vector2(78, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmx16"]
+size = Vector2(46, 2)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7cojh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08jj5"]
+size = Vector2(28, 32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_piupy"]
+size = Vector3(28, 16.305, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p7x8l"]
+size = Vector3(16, 26, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8les"]
+size = Vector2(16, 27)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_et5jm"]
+radius = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_nigd6"]
+radius = 5.0
+height = 10.0
+radial_segments = 8
+rings = 8
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s5n51"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_nubq4"]
+max_value = 0.3
+_data = [Vector2(0, 0), 0.0, 1.19506, 0, 0, Vector2(0.5, 0.3), -1.27724e-07, -1.27724e-07, 0, 0, Vector2(1, 0), -1.27747, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iv5fw"]
+curve = SubResource("Curve_nubq4")
+
+[sub_resource type="Gradient" id="Gradient_gx35w"]
+colors = PackedColorArray(1, 1, 1, 0.0784314, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xxvvr"]
+gradient = SubResource("Gradient_gx35w")
+
+[sub_resource type="Curve" id="Curve_ddcot"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ogudm"]
+max_value = 28.28
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.286667, 18.9569), 0.0, 0.0, 0, 0, Vector2(1, 16.4708), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qvkpu"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nacn7"]
+curve_x = SubResource("Curve_ddcot")
+curve_y = SubResource("Curve_ogudm")
+curve_z = SubResource("Curve_qvkpu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ifrct"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -100, 0)
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+gravity = Vector3(0, 700, 0)
+scale_min = 0.2
+scale_over_velocity_curve = SubResource("CurveXYZTexture_nacn7")
+color_initial_ramp = SubResource("GradientTexture1D_xxvvr")
+alpha_curve = SubResource("CurveTexture_iv5fw")
+
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("rain_system", "calm_system")]
+script = ExtResource("1_8beuf")
+rain_system = NodePath("RainSystem")
+calm_system = NodePath("CalmSystem")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerGUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_3gf7y")]
+player = NodePath("../../Player")
+
+[node name="LevelTexture" type="Sprite2D" parent="."]
+position = Vector2(161, 129)
+texture = ExtResource("1_pnre0")
+
+[node name="Player" parent="." instance=ExtResource("2_0aeut")]
+z_index = 10
+position = Vector2(160, 197)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -21)
+zoom = Vector2(4, 4)
+
+[node name="Borders" type="Node2D" parent="."]
+script = ExtResource("4_hsj4r")
+
+[node name="Left" type="StaticBody2D" parent="Borders"]
+position = Vector2(0, 128)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Left"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Right" type="StaticBody2D" parent="Borders"]
+position = Vector2(320, 128)
+rotation = -1.5708
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Right"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Top" type="StaticBody2D" parent="Borders"]
+position = Vector2(160, 0)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Top"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Bottom" type="StaticBody2D" parent="Borders"]
+position = Vector2(160, 256)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Bottom"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Colliders" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Colliders"]
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
+position = Vector2(105, 123)
+shape = SubResource("RectangleShape2D_vpgyb")
+one_way_collision = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Colliders"]
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D2"]
+position = Vector2(34, 68)
+shape = SubResource("RectangleShape2D_c3rs1")
+one_way_collision = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Colliders"]
+position = Vector2(195, 26)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D3"]
+position = Vector2(40, 68)
+shape = SubResource("RectangleShape2D_hpcyh")
+one_way_collision = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Colliders"]
+position = Vector2(274, 99)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D4"]
+position = Vector2(24, 68)
+shape = SubResource("RectangleShape2D_tmx16")
+one_way_collision = true
+
+[node name="Ground" type="StaticBody2D" parent="Colliders"]
+position = Vector2(160, 197)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/Ground"]
+shape = SubResource("WorldBoundaryShape2D_7cojh")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="RainSystem" type="Node2D" parent="."]
+script = ExtResource("6_naxth")
+
+[node name="GroundSpawner" parent="RainSystem" instance=ExtResource("6_my7i2")]
+spawn_list = Array[Resource]([ExtResource("7_u17or")])
+
+[node name="GroundSpawner2" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(235, 93)
+spawn_list = Array[Resource]([ExtResource("7_u17or")])
+
+[node name="GroundSpawner3" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(34, 67)
+spawn_list = Array[Resource]([ExtResource("7_u17or")])
+
+[node name="AerialSpawner" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(163, 144)
+spawn_list = Array[Resource]([ExtResource("8_h3t70")])
+
+[node name="AerialSpawner2" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(33, 26)
+spawn_list = Array[Resource]([ExtResource("8_h3t70")])
+
+[node name="AerialSpawner3" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(298, 27)
+spawn_list = Array[Resource]([ExtResource("8_h3t70")])
+
+[node name="CalmSystem" type="Node2D" parent="."]
+script = ExtResource("6_knel8")
+
+[node name="ToolShop" parent="CalmSystem" node_paths=PackedStringArray("player", "camera") instance=ExtResource("7_t4abr")]
+z_index = 5
+position = Vector2(115, 174)
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera2D")
+current_inventory = Array[Resource("res://Scripts/Items/item.gd")]([ExtResource("12_gg8h2"), ExtResource("13_ocddm"), ExtResource("14_iyvrr")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CalmSystem/ToolShop"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_08jj5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CalmSystem/ToolShop"]
+position = Vector2(0, -1)
+mesh = SubResource("BoxMesh_piupy")
+
+[node name="Label" type="Label" parent="CalmSystem/ToolShop"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 99.0
+offset_bottom = 13.0
+scale = Vector2(0.18, 0.18)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Upgrade Shop"
+
+[node name="VendingMachine" parent="CalmSystem" node_paths=PackedStringArray("player", "camera") instance=ExtResource("15_4aqpj")]
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera2D")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CalmSystem/VendingMachine"]
+position = Vector2(49, 183.5)
+mesh = SubResource("BoxMesh_p7x8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CalmSystem/VendingMachine"]
+position = Vector2(49, 183.5)
+shape = SubResource("RectangleShape2D_k8les")
+
+[node name="Label" type="Label" parent="CalmSystem/VendingMachine"]
+offset_left = 37.0
+offset_top = 171.0
+offset_right = 170.0
+offset_bottom = 220.0
+scale = Vector2(0.18, 0.18)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Vending 
+Machine"
+horizontal_alignment = 1
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="PhaseTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="Timers"]
+
+[node name="RainCaller" type="Area2D" parent="."]
+position = Vector2(298, 183)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RainCaller"]
+shape = SubResource("CircleShape2D_et5jm")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="RainCaller"]
+mesh = SubResource("SphereMesh_nigd6")
+
+[node name="Label" type="Label" parent="RainCaller"]
+offset_left = -13.0
+offset_top = -11.0
+offset_right = 136.0
+offset_bottom = 12.0
+scale = Vector2(0.18, 0.18)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Call The Next Wave"
+
+[node name="RainParticleSystem" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_s5n51")
+position = Vector2(171, 79)
+amount = 1000
+amount_ratio = 0.1
+process_material = SubResource("ParticleProcessMaterial_ifrct")
+preprocess = 0.5
+visibility_rect = Rect2(-170, -80, 320, 260)
+script = ExtResource("16_h7o8s")
+
+[connection signal="area_entered" from="RainCaller" to="." method="_on_raincaller_hit"]

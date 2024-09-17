@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StormIntensityInfo" load_steps=2 format=3 uid="uid://b2pg81auxgpux"]
+
+[ext_resource type="Script" path="res://Scripts/Particles/storm_intensity_info.gd" id="1_fjhbe"]
+
+[resource]
+script = ExtResource("1_fjhbe")
+rain_gravity = 1500.0
+rain_amount_ratio = 0.4

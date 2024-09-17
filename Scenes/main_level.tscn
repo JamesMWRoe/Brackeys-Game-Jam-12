@@ -1,0 +1,428 @@
+[gd_scene load_steps=58 format=3 uid="uid://bscjv23ae5imu"]
+
+[ext_resource type="Script" path="res://Scripts/Level/main_level.gd" id="1_8beuf"]
+[ext_resource type="PackedScene" uid="uid://dh7km5x273aj5" path="res://Scenes/Player/player.tscn" id="2_0aeut"]
+[ext_resource type="PackedScene" uid="uid://bjx2oerqhlgjs" path="res://Scenes/Player/player_gui.tscn" id="2_3gf7y"]
+[ext_resource type="AudioStream" uid="uid://b48acpjbpyaum" path="res://Assets/Sounds/loud-thunder-192165.mp3" id="2_nsmc7"]
+[ext_resource type="Texture2D" uid="uid://buhq7to7gxra3" path="res://Assets/MainScene.png" id="3_aaxpu"]
+[ext_resource type="Script" path="res://Scripts/Level/bounds.gd" id="4_hsj4r"]
+[ext_resource type="Texture2D" uid="uid://vpbg5g01f6ub" path="res://Assets/Floor.png" id="4_mhraq"]
+[ext_resource type="Script" path="res://Scripts/Systems/shop_system.gd" id="6_knel8"]
+[ext_resource type="PackedScene" uid="uid://cm1gk2rql0mie" path="res://Scenes/spawner.tscn" id="6_my7i2"]
+[ext_resource type="Script" path="res://Scripts/Systems/spawn_system.gd" id="6_naxth"]
+[ext_resource type="PackedScene" uid="uid://3fig83yf2gdo" path="res://Scenes/Shops/upgrade_shop.tscn" id="7_t4abr"]
+[ext_resource type="PackedScene" uid="uid://j7ibpko03fpv" path="res://Scenes/Enemies/ground_enemy.tscn" id="7_u17or"]
+[ext_resource type="PackedScene" uid="uid://c2pmbhk6ld7r8" path="res://Scenes/Enemies/aerial_enemy.tscn" id="8_h3t70"]
+[ext_resource type="Resource" uid="uid://cjwc2hhmebbg0" path="res://Resources/Items/BootUpgradeI.tres" id="12_gg8h2"]
+[ext_resource type="Resource" uid="uid://d4eqepys6nlim" path="res://Resources/Items/UmbrellaUpgrade1.tres" id="13_ocddm"]
+[ext_resource type="Resource" uid="uid://doluwab53mpdh" path="res://Resources/Items/TestUpgrade.tres" id="14_iyvrr"]
+[ext_resource type="PackedScene" uid="uid://2hx5v5qyx8cd" path="res://Scenes/Shops/vending_shop.tscn" id="15_4aqpj"]
+[ext_resource type="Script" path="res://Scripts/Particles/rain_system.gd" id="16_h7o8s"]
+[ext_resource type="Texture2D" uid="uid://bnnmm2b1kwb41" path="res://Assets/Scene/ShopAnim2.png" id="16_paoax"]
+[ext_resource type="Texture2D" uid="uid://dal4q8657vioa" path="res://Resources/RainParticleStuff/rain_curve_texture.tres" id="16_tte71"]
+[ext_resource type="Texture2D" uid="uid://bwerfcumre8aa" path="res://Assets/Particles/RainDrop.png" id="16_u3q3q"]
+[ext_resource type="Texture2D" uid="uid://b4apds1lurukf" path="res://Assets/Scene/ShopAnim.png" id="17_mw8vc"]
+[ext_resource type="Resource" uid="uid://b2pg81auxgpux" path="res://Resources/StormInfo/rain_phase_info.tres" id="18_bny0w"]
+[ext_resource type="Resource" uid="uid://bm37um26i0fm4" path="res://Resources/StormInfo/calm_phase_info.tres" id="18_pryd6"]
+[ext_resource type="Script" path="res://Scripts/Shop/animate_open_close.gd" id="18_slu6b"]
+[ext_resource type="Texture2D" uid="uid://b5njpbjgixfrx" path="res://Assets/VendingMachine.png" id="20_4abeh"]
+[ext_resource type="Texture2D" uid="uid://ij4bomfj6s42" path="res://Assets/Particles/RainSplash.png" id="20_je2po"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rd2pl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpgyb"]
+size = Vector2(64, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3rs1"]
+size = Vector2(60, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpcyh"]
+size = Vector2(96, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmx16"]
+size = Vector2(35, 2)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7cojh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs1yq"]
+atlas = ExtResource("16_paoax")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1jf6"]
+atlas = ExtResource("16_paoax")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgkgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs1yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1jf6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhh7o"]
+atlas = ExtResource("17_mw8vc")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saneb"]
+atlas = ExtResource("17_mw8vc")
+region = Rect2(32, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlfhc"]
+atlas = ExtResource("17_mw8vc")
+region = Rect2(64, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igba3"]
+atlas = ExtResource("17_mw8vc")
+region = Rect2(96, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yen1s"]
+atlas = ExtResource("17_mw8vc")
+region = Rect2(128, 0, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xo1iv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhh7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saneb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saneb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saneb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlfhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igba3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yen1s")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4ncm"]
+atlas = ExtResource("20_4abeh")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwu0n"]
+atlas = ExtResource("20_4abeh")
+region = Rect2(32, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu8vx"]
+atlas = ExtResource("20_4abeh")
+region = Rect2(64, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbmgn"]
+atlas = ExtResource("20_4abeh")
+region = Rect2(96, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdaaa"]
+atlas = ExtResource("20_4abeh")
+region = Rect2(128, 0, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csvhi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4ncm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwu0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu8vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbmgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdaaa")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08jj5"]
+size = Vector2(35, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8les"]
+size = Vector2(27, 32)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s5n51"]
+blend_mode = 1
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xxvvr"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ifrct"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -100, 0)
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+gravity = Vector3(-250, 500, 0)
+color_initial_ramp = SubResource("GradientTexture1D_xxvvr")
+alpha_curve = ExtResource("16_tte71")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8u6ea"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_ugu85"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kdyia"]
+gradient = SubResource("Gradient_ugu85")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tdav0"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -8, 0)
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_kdyia")
+alpha_curve = ExtResource("16_tte71")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("rain_system", "calm_system")]
+script = ExtResource("1_8beuf")
+thunder_sound = ExtResource("2_nsmc7")
+rain_system = NodePath("RainSystem")
+calm_system = NodePath("CalmSystem")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerGUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_3gf7y")]
+player = NodePath("../../Player")
+
+[node name="LevelTexture" type="Sprite2D" parent="."]
+position = Vector2(161, 129)
+texture = ExtResource("3_aaxpu")
+
+[node name="FloorTexture" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(161, 129)
+texture = ExtResource("4_mhraq")
+
+[node name="Player" parent="." instance=ExtResource("2_0aeut")]
+z_index = 10
+position = Vector2(161, 193)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -21)
+zoom = Vector2(4, 4)
+
+[node name="Borders" type="Node2D" parent="."]
+script = ExtResource("4_hsj4r")
+
+[node name="Left" type="StaticBody2D" parent="Borders"]
+position = Vector2(-31, 128)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Left"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Right" type="StaticBody2D" parent="Borders"]
+position = Vector2(353, 128)
+rotation = -1.5708
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Right"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Top" type="StaticBody2D" parent="Borders"]
+position = Vector2(160, 17)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Top"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Bottom" type="StaticBody2D" parent="Borders"]
+position = Vector2(160, 241)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Bottom"]
+shape = SubResource("WorldBoundaryShape2D_rd2pl")
+
+[node name="Colliders" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Colliders"]
+position = Vector2(55, 146)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_vpgyb")
+one_way_collision = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Colliders"]
+position = Vector2(0, 42)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D2"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_c3rs1")
+one_way_collision = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Colliders"]
+position = Vector2(243, 102)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D3"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_hpcyh")
+one_way_collision = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Colliders"]
+position = Vector2(298, 116)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/StaticBody2D4"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_tmx16")
+one_way_collision = true
+
+[node name="Ground" type="StaticBody2D" parent="Colliders"]
+position = Vector2(159, 193)
+collision_layer = 2
+collision_mask = 65
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/Ground"]
+shape = SubResource("WorldBoundaryShape2D_7cojh")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="RainSystem" type="Node2D" parent="."]
+script = ExtResource("6_naxth")
+
+[node name="GroundSpawner" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(272, 193)
+spawn_list = Array[Resource]([ExtResource("7_u17or")])
+
+[node name="GroundSpawner2" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(241, 101)
+spawn_list = Array[Resource]([ExtResource("7_u17or")])
+
+[node name="GroundSpawner3" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(57, 145)
+spawn_list = Array[Resource]([ExtResource("7_u17or")])
+
+[node name="AerialSpawner" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(109, 129)
+spawn_list = Array[Resource]([ExtResource("8_h3t70")])
+
+[node name="AerialSpawner2" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(196, 126)
+spawn_list = Array[Resource]([ExtResource("8_h3t70")])
+
+[node name="AerialSpawner3" parent="RainSystem" instance=ExtResource("6_my7i2")]
+position = Vector2(274, 113)
+spawn_list = Array[Resource]([ExtResource("8_h3t70")])
+
+[node name="CalmSystem" type="Node2D" parent="."]
+script = ExtResource("6_knel8")
+
+[node name="TopWindow" type="AnimatedSprite2D" parent="CalmSystem" node_paths=PackedStringArray("connected_shop")]
+position = Vector2(54, 132)
+sprite_frames = SubResource("SpriteFrames_cgkgq")
+script = ExtResource("18_slu6b")
+connected_shop = NodePath("../ToolShop")
+
+[node name="MainWindow" type="AnimatedSprite2D" parent="CalmSystem" node_paths=PackedStringArray("connected_shop")]
+position = Vector2(57, 162)
+sprite_frames = SubResource("SpriteFrames_xo1iv")
+script = ExtResource("18_slu6b")
+connected_shop = NodePath("../ToolShop")
+
+[node name="VendingMachine2" type="AnimatedSprite2D" parent="CalmSystem" node_paths=PackedStringArray("connected_shop")]
+position = Vector2(-2, 173)
+sprite_frames = SubResource("SpriteFrames_csvhi")
+script = ExtResource("18_slu6b")
+connected_shop = NodePath("../VendingMachine")
+
+[node name="ToolShop" parent="CalmSystem" node_paths=PackedStringArray("player", "camera") instance=ExtResource("7_t4abr")]
+z_index = 5
+position = Vector2(115, 174)
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera2D")
+current_inventory = Array[Resource("res://Scripts/Items/item.gd")]([ExtResource("12_gg8h2"), ExtResource("13_ocddm"), ExtResource("14_iyvrr")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CalmSystem/ToolShop"]
+position = Vector2(-56.5, -1)
+shape = SubResource("RectangleShape2D_08jj5")
+
+[node name="VendingMachine" parent="CalmSystem" node_paths=PackedStringArray("player", "camera") instance=ExtResource("15_4aqpj")]
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CalmSystem/VendingMachine"]
+position = Vector2(-1.5, 177)
+shape = SubResource("RectangleShape2D_k8les")
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="CalmTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="PhaseTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="Timers"]
+
+[node name="RainParticleSystem" type="Node" parent="."]
+script = ExtResource("16_h7o8s")
+rain_phase_info = ExtResource("18_bny0w")
+calm_phase_info = ExtResource("18_pryd6")
+
+[node name="RainDropParticleSystem" type="GPUParticles2D" parent="RainParticleSystem"]
+material = SubResource("CanvasItemMaterial_s5n51")
+position = Vector2(197, 79)
+amount = 1000
+amount_ratio = 0.05
+process_material = SubResource("ParticleProcessMaterial_ifrct")
+texture = ExtResource("16_u3q3q")
+preprocess = 0.5
+visibility_rect = Rect2(-228, -64, 384, 220)
+
+[node name="RainSplashParticlesSystem" type="GPUParticles2D" parent="RainParticleSystem"]
+material = SubResource("CanvasItemMaterial_8u6ea")
+position = Vector2(159, 193)
+amount = 64
+amount_ratio = 0.125
+process_material = SubResource("ParticleProcessMaterial_tdav0")
+texture = ExtResource("20_je2po")
+randomness = 0.5
+visibility_rect = Rect2(-1000, -64, 2000, 100)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[connection signal="timeout" from="Timers/CalmTimer" to="CalmSystem" method="_on_calm_timer_timeout"]

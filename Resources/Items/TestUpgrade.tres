@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://doluwab53mpdh"]
+
+[ext_resource type="Script" path="res://Scripts/Items/item.gd" id="1_d28ip"]
+[ext_resource type="Resource" uid="uid://ckw7w5ayvbcn1" path="res://Resources/Effects/HealthIncrease1.tres" id="1_j3url"]
+[ext_resource type="Texture2D" uid="uid://v3xrfpmtgyvf" path="res://Assets/Items/HealthUPIcon.png" id="2_0hsrv"]
+
+[resource]
+script = ExtResource("1_d28ip")
+type = 0
+name = "Test Upgrade I"
+icon = ExtResource("2_0hsrv")
+description = "Increases health by 1 (If this works)"
+cost = 40
+effect = ExtResource("1_j3url")

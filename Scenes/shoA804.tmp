@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=3 uid="uid://3fig83yf2gdo"]
+
+[ext_resource type="Script" path="res://shop.gd" id="1_eg618"]
+[ext_resource type="Resource" uid="uid://cjwc2hhmebbg0" path="res://Scripts/Items/BootUpgradeI.tres" id="2_6q3le"]
+[ext_resource type="PackedScene" uid="uid://b5hgjicowf3ai" path="res://Scenes/shop_item.tscn" id="2_eekso"]
+[ext_resource type="Resource" uid="uid://d4eqepys6nlim" path="res://Scripts/Items/UmbrellaUpgrade1.tres" id="3_cfdji"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop_description_ui.gd" id="4_q6keu"]
+[ext_resource type="Script" path="res://Scenes/shop_inventory_ui.gd" id="5_qdcjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt7ee"]
+
+[node name="Shop" type="Area2D"]
+monitoring = false
+script = ExtResource("1_eg618")
+current_inventory = Array[Resource("res://Scripts/Items/item.gd")]([ExtResource("2_6q3le"), ExtResource("3_cfdji")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pt7ee")
+
+[node name="ShopMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DescriptionPanel" type="Control" parent="ShopMenu"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("4_q6keu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenu/DescriptionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Name"
+
+[node name="Separator" type="Control" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator4" type="Control" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "Description"
+autowrap_mode = 2
+
+[node name="Compare" type="Label" parent="ShopMenu/DescriptionPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "Compare"
+
+[node name="ItemList" type="HBoxContainer" parent="ShopMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -264.0
+offset_right = 576.0
+offset_bottom = -136.0
+grow_vertical = 0
+alignment = 1
+script = ExtResource("5_qdcjb")
+
+[node name="ShopItem" parent="ShopMenu/ItemList" instance=ExtResource("2_eekso")]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="ShopMenu/ItemList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopItem2" parent="ShopMenu/ItemList" instance=ExtResource("2_eekso")]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="ShopMenu/ItemList"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopItem3" parent="ShopMenu/ItemList" instance=ExtResource("2_eekso")]
+layout_mode = 2

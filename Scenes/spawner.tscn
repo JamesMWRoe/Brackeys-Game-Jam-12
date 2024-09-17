@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm1gk2rql0mie"]
+
+[ext_resource type="Script" path="res://Scripts/Systems/spawn_point.gd" id="1_uyo13"]
+[ext_resource type="Texture2D" uid="uid://dds3k2j00jwrb" path="res://Assets/Enemies/AerialEnemy.png" id="2_ir5tb"]
+
+[node name="Spawner" type="Node2D"]
+position = Vector2(264, 197)
+script = ExtResource("1_uyo13")
+spawn_list = Array[Resource]([ExtResource("2_ir5tb")])

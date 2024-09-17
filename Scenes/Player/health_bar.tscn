@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bts75lgej2k08"]
+
+[ext_resource type="PackedScene" uid="uid://gmouotf14tih" path="res://Scenes/Player/heart_gui.tscn" id="1_22wpf"]
+[ext_resource type="Script" path="res://Scripts/Player/UI/health_bar.gd" id="1_favnb"]
+
+[node name="HealthBar" type="HBoxContainer"]
+offset_right = 64.0
+offset_bottom = 17.0
+theme_override_constants/separation = 2
+script = ExtResource("1_favnb")
+health_object_resource = ExtResource("1_22wpf")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5hgjicowf3ai"]
+
+[ext_resource type="Script" path="res://Scripts/Shop/shop_item_ui.gd" id="1_lta4d"]
+[ext_resource type="Texture2D" uid="uid://b1wyqlkx4yh4x" path="res://Assets/Items/BootUpgradeIcon.png" id="2_123uc"]
+
+[node name="ShopItem" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 128.0
+offset_bottom = 128.0
+script = ExtResource("1_lta4d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(4, 4)
+texture = ExtResource("2_123uc")
