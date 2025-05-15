@@ -28,7 +28,7 @@ func _ready() -> void:
 	
 	open()
 
-func _physics_process(delta) -> void:
+func _physics_process(_delta) -> void:
 	
 	if not is_open:
 		return
