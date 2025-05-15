@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Level/bounds.gd" id="4_hsj4r"]
 [ext_resource type="Texture2D" uid="uid://vpbg5g01f6ub" path="res://Assets/Floor.png" id="4_mhraq"]
 [ext_resource type="Script" path="res://Scripts/Systems/shop_system.gd" id="6_knel8"]
-[ext_resource type="PackedScene" uid="uid://cm1gk2rql0mie" path="res://Scenes/spawner.tscn" id="6_my7i2"]
+[ext_resource type="PackedScene" uid="uid://cm1gk2rql0mie" path="res://Scenes/Enemies/spawner.tscn" id="6_my7i2"]
 [ext_resource type="Script" path="res://Scripts/Systems/spawn_system.gd" id="6_naxth"]
 [ext_resource type="PackedScene" uid="uid://3fig83yf2gdo" path="res://Scenes/Shops/upgrade_shop.tscn" id="7_t4abr"]
 [ext_resource type="PackedScene" uid="uid://j7ibpko03fpv" path="res://Scenes/Enemies/ground_enemy.tscn" id="7_u17or"]
@@ -357,7 +357,7 @@ script = ExtResource("18_slu6b")
 connected_shop = NodePath("../ToolShop")
 
 [node name="MainWindow" type="AnimatedSprite2D" parent="CalmSystem" node_paths=PackedStringArray("connected_shop")]
-position = Vector2(57, 162)
+position = Vector2(49, 162)
 sprite_frames = SubResource("SpriteFrames_xo1iv")
 script = ExtResource("18_slu6b")
 connected_shop = NodePath("../ToolShop")
@@ -370,7 +370,7 @@ connected_shop = NodePath("../VendingMachine")
 
 [node name="ToolShop" parent="CalmSystem" node_paths=PackedStringArray("player", "camera") instance=ExtResource("7_t4abr")]
 z_index = 5
-position = Vector2(115, 174)
+position = Vector2(107, 174)
 player = NodePath("../../Player")
 camera = NodePath("../../Player/Camera2D")
 current_inventory = Array[Resource("res://Scripts/Items/item.gd")]([ExtResource("12_gg8h2"), ExtResource("13_ocddm"), ExtResource("14_iyvrr")])
