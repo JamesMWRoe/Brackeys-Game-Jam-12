@@ -21,7 +21,6 @@ func physics_update(delta):
 	if not right_ray_ground.is_colliding() or right_ray_block.is_colliding():
 		direction_facing = -1
 	
-	
 	context.face_direction(direction_facing)
 	
 	context.velocity.x = direction_facing * context.SPEED

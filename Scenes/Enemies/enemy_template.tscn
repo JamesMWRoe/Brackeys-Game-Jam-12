@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://djgyu8m3f1qqm"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/enemy.gd" id="1_es4oc"]
+[ext_resource type="Script" path="res://Scripts/state_machine.gd" id="2_2hvd7"]
+[ext_resource type="Script" path="res://Scripts/Enemies/States/idle.gd" id="3_vu2pw"]
+[ext_resource type="PackedScene" uid="uid://hgxj36l2xb1r" path="res://Scenes/CharacterGeneral/HitBox/hit_box.tscn" id="4_aeq6x"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_es4oc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("context", "initial_state")]
+script = ExtResource("2_2hvd7")
+context = NodePath("..")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("3_vu2pw")
+
+[node name="HitBox" parent="." instance=ExtResource("4_aeq6x")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
