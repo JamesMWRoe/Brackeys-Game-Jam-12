@@ -4,17 +4,13 @@ extends PlayerState
 
 @onready var timer: Timer = $HitTimer
 
-var current_hit: HitInfo
 
 var has_ended: bool
 
 func start():
-	Global.freeze_frame_effect(0.05, 0.4)
-	var current_hit = context.most_recent_hit
+	Global.freeze_frame_effect(0.1, 0.4)
 	has_ended = false
 	context.is_hit = false
-	
-	context.current_health -= current_hit.damage_dealt
 	context.health_updated.emit(context.current_health)
 	context.start_invulnerability()
 	
@@ -22,7 +18,6 @@ func start():
 	tween.tween_method(set_shader_blink_intensity, 1.0, 0.0, 0.5)
 	
 	
-	context.velocity = current_hit.hit_force * current_hit.hit_direction
 	timer.start()
 
 func physics_update(delta):

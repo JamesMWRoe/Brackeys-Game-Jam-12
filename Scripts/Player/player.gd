@@ -10,7 +10,10 @@ const JUMP_VELOCITY = -2 * JUMP_HEIGHT * BASE_SPEED / JUMP_DISTANCE
 const GRAVITY = 2 * JUMP_HEIGHT * (BASE_SPEED*BASE_SPEED) / (JUMP_DISTANCE*JUMP_DISTANCE)
 const BOUNCE_VELOCITY = -2 * BOUNCE_HEIGHT * BASE_SPEED / JUMP_DISTANCE
 
+
 @export var stats: CharacterStats
+
+
 var current_health: int
 var power_points: int
 
@@ -18,7 +21,7 @@ var hit_effect_list: Array[HitEffect]
 
 var inventory: Array[Item]
 
-#player bools
+#Booleans
 var is_disabled: bool
 var is_invulnerable: bool = false
 var can_attack: bool = true
@@ -26,22 +29,21 @@ var is_hit: bool = false
 var has_hit: bool = false
 var trying_to_attack: bool = false
 
+#Node references
 @onready var animation_player = $AnimationPlayer
-@onready var sprite = $Sprite2D
-@onready var hitbox: Hitbox = $AnimatedSprite2D/HitBox
-@onready var hurtbox: Hurtbox = $AnimatedSprite2D/Hurtbox
+@onready var sprite = $Sprite
+@onready var hitbox: HitBox = $Sprite/HitBox
+@onready var hurtbox: HurtBox = $Sprite/Hurtbox
 @onready var state_machine: StateMachine = $StateMachine
 
+#Timers
 @onready var invulnerability_timer: Timer = $Timers/InvulnerabliltyTimer
 @onready var attack_cooldown_timer: Timer = $Timers/AttackCooldownTimer
-@onready var attack_buffer_timer: Timer = $Timers/AttackBufferTimer
+@onready var attack_buffer_timer: BufferTimer = $Timers/AttackBufferTimer
 
 
 var direction: float
 var is_facing_right: bool
-
-var most_recent_hit: HitInfo
-var most_recent_attack: HitInfo
 
 signal health_updated(new_health: int)
 signal pp_updated(new_pp: int)
@@ -50,13 +52,14 @@ signal max_health_updated(new_max_health: int)
 
 func _ready():
 	state_machine.init()
+	hitbox.received_hit.connect(just_hit)
+
 	_initialise_character()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	direction = Input.get_axis("move_left", "move_right")
 	
 	if Input.is_action_just_pressed("attack"):
-		trying_to_attack = true
 		attack_buffer_timer.start()
 	
 	if is_facing_right:
@@ -66,24 +69,13 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func hit(hit: HitInfo) -> void:
-	if is_invulnerable:
-		return
-	is_hit = true
-	most_recent_hit = hit
-
-func hit_success(hit: HitInfo) -> void:
-	
-	most_recent_attack = hit
-	print('hit success')
-	has_hit = true
-
 func _initialise_character() -> void:
 	current_health = stats.max_health
 	print(current_health)
 	animation_player.play("RESET")
 
 
+# Inventory functions
 func gain_item(item: Item) -> void:
 	match item.type:
 		Item.item_types.UPGRADE:
@@ -119,6 +111,8 @@ func remove_item(item: Item) -> void:
 		var effect = item.effect as HitEffect
 		hit_effect_list.erase(effect)
 
+
+
 func increase_max_health(amount: int) -> void:
 	stats.max_health += amount
 	if current_health > stats.max_health:
@@ -150,6 +144,10 @@ func update_direction_facing() -> void:
 		sprite.scale.x = -1
 
 
+func just_hit(hit: HitData) -> void:
+	print('was hit')
+	is_hit = true
+
 func start_invulnerability() -> void:
 	is_invulnerable = true
 	print('is invulnerable')
@@ -167,6 +165,3 @@ func attack_cooldown(time: float) -> void:
 func _on_attack_cooldown_timer_timeout():
 	print('can attack again')
 	can_attack = true
-
-func _on_attack_buffer_timeout():
-	trying_to_attack = false

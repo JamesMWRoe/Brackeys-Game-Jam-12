@@ -1,5 +1,5 @@
-extends PlayerState
 class_name GroundedState
+extends PlayerState
 
 @export var jump: State
 @export var attack: State
@@ -32,7 +32,7 @@ func _check_for_state_change():
 		state_machine.transition_to_state(jump)
 		return
 	
-	if context.trying_to_attack:
+	if context.attack_buffer_timer.is_input_valid():
 		
 		if not context.can_attack:
 			return
