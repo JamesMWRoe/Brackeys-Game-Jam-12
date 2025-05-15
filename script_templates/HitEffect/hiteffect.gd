@@ -4,5 +4,5 @@
 
 extends HitEffect
 
-func apply_effect(hit_info: HitInfo) -> void:
+func apply_effect() -> void:
 	pass

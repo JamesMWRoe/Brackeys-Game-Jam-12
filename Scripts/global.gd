@@ -1,17 +1,11 @@
 extends Node
 
+#only use by accessing generate_unique_id
+static var _unique_id_counter: int = 0
 
-func generate_hitinfo(attacker: CharacterBody2D, defender: CharacterBody2D) -> HitInfo:
-	var hit_info = HitInfo.new()
-	
-	hit_info.damage_dealt = attacker.stats.attack
-	hit_info.hit_direction = (defender.position - attacker.position).normalized()
-	hit_info.hit_force = attacker.stats.hit_force
-	
-	for effect in attacker.hit_effect_list:
-		effect.apply_effect(hit_info)
-	
-	return hit_info
+func generate_unique_id() -> int:
+	_unique_id_counter += 1
+	return _unique_id_counter
 
 func freeze_frame_effect(time_scale, duration) -> void:
 	Engine.time_scale = time_scale
