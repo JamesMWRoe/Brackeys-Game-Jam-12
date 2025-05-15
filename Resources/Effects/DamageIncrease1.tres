@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="DamageIncreaseEffect" load_steps=2 format=3 uid="uid://b4nadpyboui4g"]
-
-[ext_resource type="Script" path="res://Scripts/Items/ItemEffect/damage_increase_effect.gd" id="1_q20wa"]
-
-[resource]
-script = ExtResource("1_q20wa")
-damage_increase = 2
