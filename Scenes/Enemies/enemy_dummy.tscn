@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl206gb8vvhpy"]
+
+[ext_resource type="PackedScene" uid="uid://djgyu8m3f1qqm" path="res://Scenes/Enemies/enemy_template.tscn" id="1_i4tlt"]
+[ext_resource type="Shader" path="res://Shaders/enemy_effect.gdshader" id="2_3vri8"]
+[ext_resource type="Texture2D" uid="uid://ded88rjjmd8rh" path="res://Assets/Enemies/TrainingDummy.png" id="3_4ajxo"]
+[ext_resource type="Script" path="res://Scripts/Enemies/States/hit.gd" id="4_drx6k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0awbv"]
+shader = ExtResource("2_3vri8")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxj7x"]
+size = Vector2(13, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uw3l"]
+size = Vector2(17, 40)
+
+[node name="EnemyDummy" instance=ExtResource("1_i4tlt")]
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_0awbv")
+position = Vector2(0, -32)
+texture = ExtResource("3_4ajxo")
+
+[node name="Collider" parent="." index="1"]
+position = Vector2(0.5, -19)
+shape = SubResource("RectangleShape2D_yxj7x")
+
+[node name="Idle" parent="StateMachine" index="0" node_paths=PackedStringArray("hit")]
+hit = NodePath("../Hit")
+
+[node name="Hit" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("idle")]
+script = ExtResource("4_drx6k")
+idle = NodePath("../Idle")
+
+[node name="HitTimer" type="Timer" parent="StateMachine/Hit" index="0"]
+wait_time = 0.5
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_6uw3l")
+
+[connection signal="timeout" from="StateMachine/Hit/HitTimer" to="StateMachine/Hit" method="_hit_timer_timeout"]
